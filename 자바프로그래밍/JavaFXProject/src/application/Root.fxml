@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="150.0" prefWidth="400.0" spacing="30.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Hello World!">
+         <font>
+            <Font name="AppleGothic Regular" size="50.0" />
+         </font></Label>
+      <Button fx:id="btn" mnemonicParsing="false" onAction="#handleBtnAction" prefWidth="80.0" text="확인">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
