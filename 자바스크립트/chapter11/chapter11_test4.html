@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 탐색 선택자 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 속성 탐색 선택자 : 선택자에 의해 선택된 요소의 속성 값이나 상태를 사용해 요소를 선택한다. //
+        
+        // 속성과 값에 의한 탐색 선택자 //
+        // 1. $('요소[속성]') : 지정한 속성이 포함되어 있는 요소를 선택한다. //
+        // 2. $('요소[속성=값]') : 지정한 속성이 지정한 값을 가지는 요소를 선택한다. //
+        // 3. $('요소[속성^=값]') : 지정한 속성이 지정한 값으로 시작하는 요소를 선택한다. //
+        // 4. $('요소[속성$=값]') : 지정한 속성이 지정한 값으로 끝나는 요소를 선택한다. //
+        // 5. $('요소[속성*=값]') : 지정한 속성이 지정한 값을 포함하는 요소를 선택한다. //
+        // 6. $(':type') : <input> 요소 중 지정한 type 값을 가지는 요소를 선택한다. //
+
+        $(function(){
+            $('#wrap a[target]').css('color', '#f00')
+            $('#wrap a[href^=https]').css('color', '#0f0')
+            $('#wrap a[href$=net]').css('color', '#00f')
+            $('#wrap a[href*=google]').css('color', '#000')
+            $(':text').css('background-color', '#ff0')
+            $(':password').css('background-color', '#0ff')
+        })
+
+        // 속성의 상태에 의한 탐색 선택자 //
+        // 1. $('요소:hidden') : 선택한 요소 중 감춰져 보이지 않는 요소를 선택한다. //
+        // 2. $('요소:visible') : 선택한 요소 중 보이는 요소를 선택한다. //
+        // 3. $('요소:selected') : <select> 에서 선택된 요소를 선택한다. //
+        // 4. $('요소:checked') : radio나 checkbox 입력 양식에서 체크되어 있는 요소를 선택한다. //
+
+        $(function(){
+            $('#wrap2 p:hidden').css({
+                'display' : 'block',
+                'background' : '#ff0'
+            })
+            const z1 = $('#zone1 : selected').val()
+            console.log(z1)
+            const z2 = $('#zone2 : checked').val()
+            console.log(z2)
+            const z3 = $('#zone3 : checked').val()
+            console.log(z3)
+        })
+
+    </script>
+</head>
+<body>
+
+    <!-- 속성과 값에 의한 탐색 선택자 -->
+    <div id='wrap'>
+        <p><a href='http://easyspup.co.kr' target='_blank'>EasyPub</a></p>
+        <p><a href='https://naver.com'>Naver</a></p>
+        <p><a href='https://daum.net'>Daum</a></p>
+        <p><a href='https://google.co.kr'>Google</a></p>
+        <form action='#' method='get' id='member_f'>
+            <p>
+                <label for='user_id'>아이디</label>
+                <input type='text' name='user_id' id='user_id'>
+            </p>
+            <p>
+                <label for='user_pw'>비밀번호</label>
+                <input type='password' name='user_pw' id='user_pw'>
+            </p>
+        </form>
+    </div>
+
+    <!-- 속성의 상태에 의한 탐색 선택자 -->
+    <div id='wrap2'>
+        <p>내용1</p>
+        <p style='display:none'>내용2</p>
+        <p>내용3</p>
+    </div>
+    <form action='#'>
+        <p id='zone1'>
+        <select name='course' id='course'>
+            <option value='opt1'>옵션1</option>
+            <option value='opt2' selected>옵션2</option>
+            <option value='opt3'>옵션3</option>
+        </select>
+        </p>
+        <p id='zone2'>
+            <input type='checkbox' name='hobby1' value='독서'> 독서
+            <input type='checkbox' name='hobby2' value='자전거'> 자전거
+            <input type='checkbox' name='hobby3' value='등산' checked> 등산
+        </p>
+        <p id='zone3'>
+            <input type='radio' name='gender' value='male'> 남성
+            <input type='radio' name='gender' value='female' checked> 여성
+        </p>
+    </form>
+
+
+</body>
+</html>

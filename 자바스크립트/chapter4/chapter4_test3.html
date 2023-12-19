@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4장-3</title>
+    <script>
+        class Rectangle { // 클래스 생성 //
+            constructor(width, height) {
+                this._width = width;
+                this._height = height;
+            }
+            get width() { // 객체의 width 속성에 바로 접근 가능한 getter //
+                return this._width;
+            }
+            set width(input) { // 객체의 width 속성에 바로 접근 가능한 setter //
+                this._width = input;
+            }
+            area() {
+                return this._width * this._height;
+            }
+        }
+        class Square extends Rectangle { // 상속받는 클래스 생성 //
+            constructor(length) {
+                super(length, length);
+            }
+        }
+        const rectangle = new Rectangle(100, 200);
+        const square = new Square(20);
+        document.writeln("너비 : ", rectangle._width, "<br>");
+        document.writeln("높이 : ", rectangle._height, "<br>");
+        document.writeln("면적 : ", rectangle.area(), "<br>");
+        document.writeln("정사각형 너비 : ", square.area(), "<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

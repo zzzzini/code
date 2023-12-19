@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 선택자 : 자바스크립트 라이브러리의 효과를 지정하기 위해 HTML의 DOM 요소를 선택하는 역할을 수행한다. //
+        // 선택자에 의해 선택된 요소는 jQuery 객체를 형성한다. //
+        // 선택자의 형식 : $('선택자') //
+
+        $(function(){
+            $('#title').css('color', 'red')
+        })
+
+        $(function(){
+            $('#tt').css('color', 'blue')
+        })
+
+    </script>
+</head>
+<body>
+    <h1 id="title">HELLO</h1>
+    <h2 id='tt'>hi</h2>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기초와 ready()메서드</title>
+    <script src="../script/jquery-3.6.0.js"> // jQuery 구문을 연결하는 script를 head태그 내에 위치시킬 경우 무조건 사용 // </script>
+    <style>
+        div{width:200px; height:200px; background-color:pink}
+    </style>
+    <script>
+
+        // 기말고사 범위 시작 //
+        // jQuery : 복잡한 Javascript를 쉽게 사용하기 위한 목적으로 생성된 라이브러리 중 하나 //
+        //          자바스크립트의 DOM 처리에서 발생되는 크로스 브라우징 문제를 해결 //
+        
+        // jQuery의 특징 //
+        // 1. Wirte Less, Do More : 적은 코드로 많은 일을 할 수 있다. //
+        // 2. 오픈 소스(Open Source) : jQuery는 무료이며 플러그인 제작자의 이름만 명시하면 코드 사용 가능. //
+        // 3. 문서화(Documentation) : jQuery 함수의 사용 방법에 대한 문서화가 잘 되어있다. //
+
+        // ready() 메소드 : 문서의 모든 Dom 요소를 로드하였을 때 인자로 지정된 함수를 실행하는 메서드 //
+        // ready() 메서드를 사용하는 이유 //
+        // a. 브라우저는 head태그를 먼저 읽고 body태그를 읽어 요소를 로드한다. //
+        // 이 때 jQuery 구문이 head태그에 존재할 경우 body태그를 읽지 않아 요소를 로드하지 못했으므로 jQuery 구문의 수행이 불가하다. //
+        // b. 정상적인 jQuery 동작을 위해서는 요소를 모두 로드했다는 것을 알려주는 이벤트가 필요하다. //
+        // 이를 문서 준비 이벤트라고 하며, 문서 준비 이벤트가 발생되면 ready() 메서드가 실행된다. //
+        // c. jQuery 구문의 위치에 따라서 ready() 메서드의 사용 여부가 결정된다 //
+        // jQuery 구문이 head태그에 위치하면 ready() 메서드 내에 표현해야 하지만 //
+        // jQuery 구문이 body태그에 위치하면 모든 요소가 로드된 후 구문이 실행되므로, ready() 메서드를 사용하지 않아도 된다. //
+
+        // jQuery 코드가 head 태그에 위치할 경우 (ready() 메서드 사용 필수) //
+        jQuery(document).ready(function() {
+            // jQuery 코드 //
+            $('div').click(function(e) {
+                $(this).text("은서 안뇽 ㅎㅎ");
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div> </div>
+
+    <!-- jQuery 코드가 body 태그 마지막에 위치할 경우 (ready() 메서드 사용 불필요)
+    <script>
+        $('div').click(function(e) {
+            $(this).text("Muyaho");
+        });
+    </script> -->
+    
+</body>
+</html>

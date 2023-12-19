@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위치 탐색 선택자 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+        
+        // 탐색 선택자 : 선택자에 의해 선택한 요소들에 대해 다시 특정 조건을 지정해 세밀하게 탐색할 수 있는 선택자. //
+        // 필터의 개념을 사용하여 다시 검색을 수행한다. //
+        // 1. 선택자에 필터를 적용하는 방법 : 선택자에 의해 선택된 요소에 다시 필터를 적용해 추가적인 선택을 수행한다. //
+        // 2. 필터링 메서드를 사용하는 방법 : 자주 사용되는 선택자 + 필터의 구조를 별도의 메서드 형태로 제공한다. //
+        // 탐색 선택자의 종류 //
+        // 1. 위치 탐색 선택자 : 요소의 위치를 사용해 요소를 선택한다. //
+        // 2. 속성 탐색 선택자 : 요소의 속성이 가지는 값을 사용해 요소를 선택한다. //
+        // 3. 내용 탐색 선택자 : 요소가 가지는 내용에 따라 요소를 선택한다. //
+
+        // 위치 탐색 선택자 //
+        // 필터 -> $('선택자:필터') : 선택자를 사용하는 것보다 정교하게 선택할 수 있도록 제이쿼리가 제공하는 선택자. //
+        // 1. first 필터 선택자 -> $('요소:first') : 선택자에 의해 선택된 요소들 중 첫 번째 요소를 선택한다. //
+        // 2. last 필터 선택자 -> $('요소:last') : 선택자에 의해 선택된 요소들 중 마지막 요소를 선택한다. //
+        // 3. even 필터 선택자 -> $('요소:even') : 선택자에 의해 선택된 요소들 중 index가 짝수 번째인 요소를 선택한다. //
+        // 4. odd 필터 선택자 -> $('요소:odd') : 선택자에 의해 선택된 요소들 중 index가 홀수 번째인 요소를 선택한다. //
+
+        $(function(){
+            $('#list li:first').css('border', '2px dashed red')
+            $('#list li:last').css('border', '2px dashed blue')
+            $('#list li:even').css('background-color', 'yellow')
+            $('#list li:odd').css('backgroundColor', 'orange')
+        })
+
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li>first 필터 선택자</li>
+        <li>odd 필터 선택자</li>
+        <li>even 필터 선택자</li>
+        <li>odd 필터 선택자</li>
+        <li>last 필터 선택자</li>
+    </ul>
+</body>
+</html>

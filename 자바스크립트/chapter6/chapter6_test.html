@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6장</title>
+    <script>
+        /* 문서 객체 모델(DOM : Document Object Model)은 각종 태그들로 구성된 HTML 문서의 구조를 의미한다.
+           문서 객체는 HTML문서를 구성하고 있으면서 기능과 속성을 가진 태그(ex : <html>, <body>)이고
+           표준화된 방법으로 문서 객체에 접근할 수 있는 방법을 제공하기 위해 사용한다.
+           그러나 브라우저 간 호환성이 떨어진다. */
+        
+        /* DOM 노드의 분류
+        <종류에 따른 분류>
+        요소 노드 : HTML 태그로 구성된 노드
+        텍스트 노드 : HTML 태그 내에 포함되어 있는 텍스트(문자열)
+        속성 노드 : HTML 태그에 포함된 속성과 값의 집합
+        
+        <계층에 따른 분류>
+        부모 노드 : 특정 HTML 태그를 포함하고 있는 노드
+        자식 노드 : 특정 HTML 태그에 포함되어 있는 노드
+        형제 노드 : 같은 레벨에 존재하는 자식 노드 */
+
+        /* 정적 객체와 동적 객체
+        정적 객체 : HTML 문서에 나타나 있는 요소들로, 내용이 변하지 않으며 실행할 때마다 항상 같은 내용이 출력됨.
+        동적 객체 : 문서의 실행에 따라 새로 생성되는 요소들로, 실행할 때마다 다른 내용이 출력될 수 있는 객체이다.
+                  주로 문서 객체 모델을 사용하거나, 제이쿼리등의 라이브러리를 사용해 생성한다.
+        */
+        
+        window.onload = function () {
+            let header1 = document.createElement('h1'); // 요소 노드 생성 //
+            let textNode1 = document.createTextNode('Hello DOM'); // 텍스트 노드 생성 //
+
+            // 이 상태는 요소들이 생성은 되었으나 문서에는 아직 삽입되지 않은 상태 (DOM의 구조에 미포함) //
+
+            header1.appendChild(textNode1); // 생성한 텍스트 노드를 문서에 삽입 //
+            document.body.appendChild(header1); // 생성한 요소 노드를 문서에 삽입 //
+
+            let header2 = document.getElementById('a1');
+            let header3 = document.getElementById('a2');
+
+            header2.innerHTML = '<h2>innerHTML</h2>'; // 값으로 지정된 요소(html 태그) 추가 //
+            header3.textContent = '<h2>textContent</h2>'; // 객체에 인자로 지정한 문자열 삽입 //
+
+            let img = document.createElement('img');
+            img.setAttribute('src', '../images/flower.gif'); // 지정한 인자의 속성을 변경 //
+            img.setAttribute('width', 200); // 지정한 인자의 속성을 변경 //
+            img.setAttribute('height', 200); // 지정한 인자의 속성을 변경 //
+            document.body.appendChild(img);
+            let new_width = img.getAttribute('width'); // 지정한 인자의 속성 추출 //
+            let new_height = img.getAttribute('height'); // 지정한 인자의 속성 추출 //
+            alert(new_width + " , " + new_height);
+
+            const header4 = document.getElementById('header-1'); // 요소가 가지는 id를 사용해 요소 선택 //
+            header4.textContent = 'with getElementById()';
+
+            const headers = document.getElementsByTagName('h5'); // 요소의 이름을 사용해 요소 선택 //
+            headers[0].textContent = 'with getElementsByTagName()';
+            headers[1].textContent = 'with getElementsByTagName()';
+
+            const headered = document.querySelectorAll('h5'); // querySelector()는 동일한 객체중 맨 앞의 것 선택 //
+            for(let i=0; i<headered.length; i++) { // quertSelectorAll()은 동일한 모든 객체를 배열 형태로 선택 //
+                headered[i].textContent = 'with querySelectorAll()';
+            }
+
+            let willRemove = document.getElementById('will-remove');
+            document.body.removeChild(willRemove); // 문서 객체의 자식 노드를 제거 //
+        };
+        
+    </script>
+</head>
+<body>
+    <div id=a1></div>
+    <div id=a2></div>
+    <h5 id="header-1">Header</h5>
+    <h5 id="header-2">Header</h5>
+    <h6 id="will-remove">Header-1</h6>
+    <h6>Header-2</h6>
+    
+</body>
+</html>

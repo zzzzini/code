@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8장</title>
+    <script>
+        // 기본 함수 정의문 //
+        function myFunc() {
+            document.write("hello", "<br>");
+            document.write("welcome", "<br>");
+        }
+        myFunc();
+        myFunc();
+
+        const color=["white","yellow","aqua","purple"];
+        let i=0;
+        function changeColor() {
+            i++;
+            if(i>=color.length) {
+                i=0;
+            }
+
+            let bodyTag = document.getElementById("theBody");
+            bodyTag.style.backgroundColor = color[i];
+        }
+        /* 익명 함수 정의문
+        형식 : let myFunc() { alert('한국'); }
+        기본 함수는 내용대체가 되지만, 익명 함수는 내용 재정의가 볼가능함 */
+
+        /* 화살표 함수 이용법
+        기본 : function 함수명 (인자) {}
+        화살표 함수 이용 : 함수명 = (인자) => {}
+        */
+    </script>
+</head>
+<body id = "theBody">
+    <button onclick="changeColor();">엄 준 식</button>
+    
+</body>
+</html>

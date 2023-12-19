@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 클래스 제어 예시</title>
+    <style>
+        .item_1 { color:red; }
+        .item_2 { text-decoration:underline; }
+        .item_3 { border:3px dashed blue; }
+        .text_red { color:red; }
+        .text_blue { color:blue; }
+        .back_color { background:yellow; }
+        div { background:white; }
+        .red { background:red; }
+        .yellow { background:yellow; }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // CSS 클래스 : jQuery를 사용해 생성되어 있는 CSS를 제어할 수 있다. //
+        // 클래스를 직접 생성하는 것은 아니며, 미리 생성되어 있는 클래스를 특정 요소에 지정하거나 지정 해제하는 것이다. //
+        // 1. css() 메서드 -> $('요소').css([css속성,[속성값|callback function]]) : 선택된 요소에 적용된 CSS를 추출하거나, 새로운 CSS 속성을 지정한다. //
+        // a. 인자로 CSS 속성만을 가질 경우 : 선택된 요소에 적용된 CSS 속성 중 인자로 지정된 속성의 값을 반환한다. //
+        // b. 인자로 CSS 속성과 속성 값을 가지는 경우 : 선택된 요소의 속성값을 인자로 지정한 속성 값으로 지정한다. //
+        // c. 인자로 CSS 속성과 콜백함수를 가지는 경우 : 선택된 요소의 속성값을 인자로 콜백함수의 수행 결과 값을 지정한다. //
+        // 2. addClass() 메서드 -> $('요소').addClass(클래스 리스트|콜백함수) : 선택한 요소에 인자로 지정한 클래스를 적용한다. //
+        // 인자로 지정할 클래스들은 이미 생성되어 있어야 한다. //
+        // a. 인자로 클래스를 가질 경우 : 인자로 지정한 클래스를 적용한다. 요소에 다른 클래스가 이미 지정되어 있는 경우 추가 적용된다. //
+        // b. 인자로 하나 이상의 클래스를 동시에 지정한 경우 : 지정한 클래스들이 함께 적용된다. //
+        // c. 인자로 콜백함수를 가지는 경우 : 콜백 함수의 수행 결과를 클래스에 적용한다. 콜백 함수의 반환 값은 반드시 클래스 이름이어야 한다. //
+        // 3. removeClass() 메서드 -> $('요소').removeClass(클래스 리스트|콜백함수) : 선택된 요소에 지정된 클래스 중 인자로 지정된 클래스를 제거한다. //
+        // a. 인자를 가지지 않을 경우 : 선택된 요소에 지정되어 있는 모든 클래스들을 제거한다. //
+        // b. 인자로 클래스 리스트를 가지는 경우 : 선택된 요소에 지정되어 있는 클래스들 중 인자로 가지는 클래스들을 모두 삭제한다. //
+        // c. 인자로 콜백 함수를 가지는 경우 : 선택된 요소에 지정되어 있는 클래스들 중 콜백 함수의 수행 결과인 클래스를 지정한다. 콜백 함수의 반환 값은 클래스여야 한다. //
+        // 4. hasClass() 메서드 -> $('요소').hasClass(클래스) : DOM 요소에 인자로 지정한 클래스가 지정되어 있는지를 조사한다. //
+        // 5. toggleClass() 메서드 -> $('요소').toggleClass(클래스) : 선택된 요소에 인자로 가지는 클래스가 존재하면 제거하고, 존재하지 않으면 지정한다. //
+
+        $(function(){
+            let ret_class
+            $('h3').eq(0).addClass('item_1')
+            $('h3').eq(1).addClass('item_1 item_2')
+            $('h3').addClass(function(index){
+                if((index%2)==0){
+                    ret_class = 'item_3'
+                    return ret_class
+                }
+            })
+        })
+
+        $(function(){
+            $('h2').first().removeClass('text_blue')
+            $('h2').last().removeClass()
+        })
+
+        $(function(){
+            $('div').removeClass(function(index, current_Class){
+                let deleteClass
+                if ($(this).hasClass('yellow')){
+                    deleteClass = 'yellow'
+                }
+                return deleteClass
+            })
+        })
+
+        $(function(){
+            $('div').click(function(){
+                $(this).toggleClass('red')
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>addClass() 예제</h1>
+    <h3>addClass(속성1)</h3>
+    <h3>addClass(속성1, 속성2)</h3>
+    <h3>addClass(콜백함수)</h3>
+
+    <h1>removeClass() 예제</h1>
+    <h2 class='text_blue back_color'>removeClass(속성1)</h2>
+    <h2 class='text_red back_color'>removeClass()</h2>
+
+    <h1>hasClass() 예제</h1>
+    <div class='red'>hasClass의 영향을 받지 않음</div>
+    <div class='yellow'>hasClass의 영향을 받음</div>
+    <div class='yellow'>hasClass의 영향을 받음</div>
+    <div class='red'>hasClass의 영향을 받지 않음</div>
+
+    <h1>toggleClass() 예제</h1>
+    <div class='text'>toggleClass에 의해 클릭시 속성이 생겼다 없어짐</div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3장-1</title>
+    <script>
+        let num = 5;
+        if (num >= 3) { // 조건문을 사용하는 방법 //
+            document.write("Hello~", "<br>");
+        }
+        const userName = prompt("누가 온건가요?", "");
+        if(userName) { // 조건식에 논리형 데이터가 아닌 다른 데이터가 오면 0,null 빼고는 다 true로 인식합니다. //
+            document.write(userName+"님 어서오세용^_^", "<br>");
+        }
+        const result = confirm("강퇴시키겠습니까?");
+        if (result) { // if-else문 사용법 //
+            document.write("강퇴시켰습니다.", "<br>");
+        } else {
+            document.write("마음이 약해졌습니다.", "<br>");
+        }
+        const mon = prompt("현재 몇 월인가요?", "0");
+        if (mon >= 9 && mon <= 11) { // 다중 if-else문 사용법 //
+            document.write("독서의 계절 가을이네요.", "<br>");
+        } else if (mon >= 6 && mon <= 8) {
+            document.write("여행 가기 좋은 여름이네요.", "<br>");
+        } else if (mon >= 3 && mon <= 5) {
+            document.write("햇살 가득한 봄이네요.", "<br>");
+        } else {
+            document.write("스키의 계절 겨울이네요.", "<br>");
+        }
+        const id = "jin";
+        const pw = "1234";
+        const user_id = prompt("아이디는?", "");
+        const user_pw = prompt("비밀번호는?", "");
+        if (id == user_id) { // 중첩 if문 사용법 //
+            if (pw == user_pw) {
+                document.write(user_id+"님 반갑습니다!", "<br>");
+            } else {
+                alert("비밀번호가 일치하지 않습니다.", "<br>");
+                location.reload();
+            }           
+        } else {
+                alert("아이디가 일치하지 않습니다.", "<br>");
+                loacation.reload;
+        }
+        const a = 10;
+        const b = 3;
+        const result2 = a>b ? "자바스크립트" : "프로그래밍"; // 삼항 조건문 사용법 //
+        document.write(result2);
+        /* 배열의 경우 let arr = new Array(3); 과 같이 선언이 가능하다.
+        단, 저렇게 배열의 크기를 미리 선언해도, 추가적으로 요소를 추가하면
+        자동적으로 배열의 크기가 증가한다. */
+
+        // while문과 do while문의 경우는 문법이 다른 언어들과 크게 다른게 없다. //
+        // for문의 경우에도 for(let i=1; i<=40; i++)이후 문법은 동일하다. //
+
+        const array = ['포도','사과','바나나','망고']; // for in 반복문 사용법 //
+        for (const i in array) { // for(const i=0; i<array.length; i++)와 같다. //
+            document.write(array[i],"<br");
+        }
+        const array2 = [1,2,3,4]; // for of 반복문 사용법 //
+        for (const element of array2) { // array2의 요소들에 하나하나 접근한다. //
+            document.write("배열의 요소는 ", element, "입니다.", "<br>");
+        }
+        // for in 반복문은 배열의 인덱스에, for of 반복문은 배열의 요소에 접근한다. //
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4장-2</title>
+    <script>
+        function CheckWeight(name, height, weight) { // 객체 생성자 함수 사용법 //
+            this.userName = name;
+            this.userHeight = height;
+            this.userWeight = weight;
+            this.minWeight;
+            this.maxWeight;
+
+            this.getInfo = function() {
+                let str = ""
+                    str += "이름 : " + this.userName + "<br>";
+                    str += "키 : " + this.userHeight + "<br>";
+                    str += "몸무게 : " + this.userWeight + "<br>";
+                    return str;
+            }
+            this.getResult = function() {
+                this.minWeight = (this.userHeight - 100) * 0.9 - 5;
+                this.maxWeight = (this.userWeight - 100) * 0.9 + 5;
+                if(this.userWeight >= this.minWeight && this.userWeight <= this.maxWeight) {
+                    return "정상 몸무게입니다";
+                } else if(this.userWeight < this.minWeight) {
+                    return "정상 몸무게보다 미달입니다";
+                } else {
+                    return "정상 몸무게보다 초과입니다";
+                }
+            }
+        }
+        let jang = new CheckWeight("장보리", 168, 62);
+        let park = new CheckWeight("박달재", 180, 88);
+        console.log(jang);
+        console.log(park);
+        document.write(jang.getInfo());
+        document.write(jang.getResult(),"<br>");
+        document.write(park.getInfo());
+        document.write(park.getResult());
+
+        /* 생성자 함수를 통해 생성되는 객체들은 서로 다른 속성값을 가지지만, 모두 같은 메소드를 가진다.
+        이로 인한 메모리 낭비를 방지하기 위해서 프로토타입을 선언한다.
+        프로토타입이란 생성자 함수로 생성된 객체가 공통으로 가지는 공간으로, 함수 외부에 선언한다. */
+
+        function CheckWeight2(name, height, weight) { // 위에서 선언한 함수를 프로토타입으로 변경하기 //
+            this.userName = name;
+            this.userHeight = height;
+            this.userWeight = weight;
+            this.minWeight;
+            this.matWeight;
+        }
+        CheckWeight2.prototype.getInfo = function() { // 위에서 this.getInfo로 선언한 함수를 프로토타입으로 선언 //
+            let str = ""
+                str += "이름 : " + this.userName + ", ";
+                str += "키 " + this.userHeight + ", ";
+                str += "몸무게 : " + this.userWeight + "<br>";
+                return str;
+        }
+        CheckWeight2.prototype.getResult = function() { // 마찬가지로 this.getResult로 선언한 함수를 프로토타입으로 선언 // 
+            this.minWeight = (this.userHeight - 100) * 0.9 - 5;
+            this.maxWeight = (this.userHeight - 100) * 0.9 + 5;
+            if(this.userWeight >= this.minWeight && this.userWeight <= this.maxWeight) {
+                return "정상 몸무게입니다.";
+            } else if(this.userWeight < this.minWeight) {
+                return "정상 몸무게보다 미달입니다.";
+            } else {
+                return "정상 몸무게보다 초과입니다.";
+            }
+        }
+        let jang = new CheckWeight2("장보리", 168, 62);
+        let park = new CheckWeight2("박달재", 180, 88);
+        document.write(jang.getInfo());
+        document.write(jang.getResult(), "<br>");
+        document.write(jang.getResult == park.getResult);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주석 처리된 함수들 예제</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            let arr1 = [
+                {area:'필터링',name:'홍길동'},
+                {area:'부산',name:'이순신'},
+                {area:'대전',name:'강감찬'},
+                {area:'필터링',name:'권율'}
+            ]
+            let arr2 = $.map(arr1, function(item, index){
+                if(item.area=='필터링') {
+                    return item
+                }
+            })
+            $.each(arr2, function(index, item){
+                var output = item.area + '-' + item.name + "<br>"
+                document.body.innerHTML += output
+            })
+        })
+
+        $(function(){
+            let arr3 = [
+                {area:'필터링',name:'홍길동'},
+                {area:'부산',name:'이순신'},
+                {area:'대전',name:'강감찬'},
+                {area:'필터링',name:'권율'}
+            ]
+            let arr4 = $.grep(arr1, function(item, index){
+                if(item.area=='필터링') {
+                    return item
+                }
+            })
+            $.each(arr4, function(index, item){
+                var output2 = item.area + '-' + item.name + "<br>"
+                document.body.innerHTML += output2
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

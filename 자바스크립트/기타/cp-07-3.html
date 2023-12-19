@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            div#box{ width:100px; height:100px; background-color:#FC9; }
+        </style>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function () {
+
+                let area = document.getElementByID('box');
+                let myTxt = document.getElementByID('txt')
+                let btn = document.getElementByID('rmv')
+
+                let on_mouse = () => {
+                    myTxt.innerText = "마우스를 올렸습니다."
+                }
+                area.addEventListener('mouseover', on_mouse)
+
+                let out_mouse = () => {
+                    myTxt.innerText = "마우스를 내렸습니다."
+                }
+                area.addEventListener('mouseout', out_mouse)
+
+                let clk_mouse = () => {
+                    myTxt.innerText = "마우스를 클릭했습니다."
+                }
+                area.addEventListener('click', clk_mouse)
+
+                let dlt_mouse = () => {
+                    area.removeEventListener('click', clk_mouse)
+                }
+                btn.addEventListener('click', dlt_mouse)
+            })
+        </script>
+    </head>
+    <body>
+        <dlv id="box"></dlv><p>
+        <dlv id="txt"></dlv><p>
+        <input type=button id="rmv" value="클릭 이벤트 제거">
+    </body>
+</html>

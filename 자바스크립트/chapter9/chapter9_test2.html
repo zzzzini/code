@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 사용 예시</title>
+    <script src = "../script/jquery-3.6.0.js"></script>
+    <script type = "text/javascript">
+        $(function() {
+            jQuery('div li.current').css("background-color","#F00");
+        })
+    </script>
+</head>
+<body>
+    <h2> jQuery의 기초 </h2>
+    <div id = "main">
+        <p> jQuery 선택자 </p>
+        <ul id = "navi">
+            <li> 기본 선택자 </li>
+            <li class="current"> 직접 선택자 </li>
+            <li> 인접 관계 선택자 </li>
+        </ul>
+    </div>
+</body>
+</html>

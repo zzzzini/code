@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4장-4</title>
+    <script>
+        /*  내장 객체란, 자바스크립트가 기본적으로 제공하는 객체로, 자바스크립트 엔진에 포함되어 있는 객체이다.
+        new 연산자를 통해 생성하며, Date, Number, Array, Math, String 객체가 있다. */
+
+        const tv = new Object(); // Object 객체 사용법 //
+        tv.color = "white";
+        tv.price = "300000";
+        tv.info = function() {
+            document.write("tv 색상 : " + this.color, "<br>");
+            document.write("tv 가격 : " + this.price, "<br>");
+        }
+        document.write("tv 객체 메소드 호출", "<br>");
+        tv.info();
+
+        const student = {
+            name : '오현진', grade : '대학교 2학년',
+            toString : function() { /* 자바스크립트는 객체를 문자열로 변환시 자동으로 toString() 메소드를 호출하므로,
+                                    보통 toString() 메소드는 다음과 같이 재정의하여 사용한다. */
+                return this.name + ' : ' + this.grade;
+            }
+        };
+        alert(student.toString());
+
+        document.write("Date 객체 테스트", "<br>"); // Date 객체 사용법 //
+        let td = new Date();
+        document.write("[오늘의 날짜 정보]","<br>");
+        document.write("오늘은 ");
+        document.write(td.getFullYear(), "년 ", td.getMonth()+1, "월 ", td.getDate());
+        document.write("일입니다.", "<br>");
+        day = td.getDay();
+        switch(day) {
+            case(0) : now_day = "일요일"; break;
+            case(1) : now_day = "월요일"; break;
+            case(2) : now_day = "화요일"; break;
+            case(3) : now_day = "수요일"; break;
+            case(4) : now_day = "목요일"; break;
+            case(5) : now_day = "금요일"; break;
+            case(6) : now_day = "토요일"; break;
+        }
+        document.write("오늘은 ",now_day,"입니다.","<br>");
+        document.write("지금은 ");
+        document.write(td.getHours(),"시 ",td.getMinutes(),"분 ",td.getSeconds(),"초입니다.", "<br>");
+
+        document.write("Math 객체 테스트", "<br>"); // Math 객체 사용법 //
+        const num = 2.1234;
+        const maxNum = Math.max(10, 5, 8, 30);
+        const minNum = Math.min(10, 5, 8, 30);
+        document.write(maxNum,"<br>");
+        document.write(minNum,"<br>");
+        document.write(Math.round(num), "<br>");
+        document.write(Math.floor(num), "<br>");
+        document.write(Math.ceil(num), "<br>");
+        document.write(Math.random(), "<br>"); // 자바스크립트에서 random()은 0~1 사이의 실수로 난수를 발생시킨다. //
+        document.write(Math.PI, "<br>");
+
+        document.write("배열 객체 테스트", "<br>");
+        const user_info = ["이박사", "연구원", "서울"];
+        for(let i=0; i<user_info.length; i++) {
+            document.writeln(user_info[i],"<br>");
+        }
+        for(const i in user_info) {
+            document.writeln(user_info[i], "<br>");
+        }
+        document.write("Array 객체 메소드랑 String 객체는 책 보고 공부하는게 빠름.", "<br>");
+        document.write("JSON 테스트", "<br>");
+        const data = { // JSON.stringify(객체, 추출하는 내용, 공백 크기) //
+            "product" : "TV",
+            "price" : 1000000,
+            "manufacturer" : "Samsung"
+        };
+        alert(JSON.stringify(data));
+        alert(JSON.stringify(data, null, 4));
+        alert(JSON.stringify(data, ['product', 'price'], 4));
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

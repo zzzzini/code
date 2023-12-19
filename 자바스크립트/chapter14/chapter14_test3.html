@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Effect 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // Sliding Effect : 요소에 대해 상하 방향으로 나타나거나 사라지는 효과를 지정한다. //
+        // 1. slideDown() 메서드 -> $('요소').slideDown([duration],[easing],[callback function]) : 선택된 요소를 위에서 아래로 나타내는 기능을 수행한다. //
+        // 요소의 height 속성만을 사용한다. //
+        // 2. slideUp() 메서드 -> $('요소').slideUp([duration],[easing],[callback function]) : 선택한 요소를 아래에서 위로 감추는 기능을 수행한다. //
+        // 요소의 height 속성만을 사용한다. //
+        // 3. slideToggle() 메서드 -> $('요소').slideToggle([duration],[easing],[callback function]) : slideDown()과 slideUp()을 혼용한 메서드이다. //
+        // display가 none()인 경우 -> slideDown()을 수행, display가 none()이 아닌 경우: slideUp()을 수행 //
+
+        $(function(){
+            $('#up').click(function(){
+                $('div#hi').slideUp(1000)
+            })
+            $('#down').click(function(){
+                $('div#hi').slideDown(1000)
+            })
+        })
+        $(function(){
+            $('button#papers').click(function(){
+                $('div#paper').slideToggle(500)
+            })
+            $('button#tvs').click(function(){
+                $('div#tv').slideToggle(500)
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>slideDown(), slideUp() 예제</h1>
+    <div id='hi'>
+        <img src="../images/image1.JPG" alt='' width='300' height='307'>
+    </div>
+    <button id='up'> slide 감추기 </button>
+    <button id='down'> slide 보이기 </button>
+
+    <h1>slideToggle() 예제</h1>
+    <div>
+        <button id='papers'>신문사</button>
+        <div id='paper'>
+            한국일보<br>
+            조선일보<br>
+            동아일보
+        </div>
+        <br>
+        <button id='tvs'>방송사</button>
+        <div id='tv'>
+            문화방송<br>
+            한국방송<br>
+            서울방송
+        </div>
+    </div>
+
+</body>
+</html>

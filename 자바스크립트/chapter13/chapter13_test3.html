@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 관련 이벤트 예시</title>
+    <style>
+        div.out {
+            width:200px;
+            height:200px;
+            margin:0 15px;
+            background-color:#D6EDFC;
+            float:left;
+        }
+        div.in {
+            width:100px;
+            height:100px;
+            background-color:#FFCC00;
+            margin:10px auto;
+        }
+        p {
+            line-height:1em;
+            margin:0;
+            padding:0;
+        }
+        .myclass1 { background:red; color:white; }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 마우스 관련 이벤트 //
+        // 1. mouseenter() 메서드 -> $('요소').mouseenter(이벤트핸들러) : 요소의 영역으로 마우스 포인터가 올라갔을 때 실행되는 이벤트 메서드 //
+        // 2. mouseleave() 메서드 -> $('요소').mouseleave(이벤트핸들러) : 요소의 영역에서 마우스 포인터가 벗어났을 때 실행되는 이벤트 메서드 //
+        // mouseenter()는 mouseover()와, mouseleave()는 mouseout()과 유사한 기능을 수행하지만, 후자들이 버블링을 지원하여 거의 사용되지 않는다. //
+        // 3. mousemove() 메서드 -> $('요소').mousemove(이벤트핸들러) : 마우스 포인터가 좌우로 이동될 때 실행되는 이벤트 메서드 //
+        // 4. hover() 메서드 -> $('요소').hover(이벤트핸들러1, 이벤트핸들러2) : 요소 위로 마우스를 올리거나 내릴 때 실행되는 이벤트 메서드 //
+        // 이벤트 핸들러 1 : 마우스가 들어갈 때 발생되는 이벤트, 이벤트 핸들러 2: 마우스가 떠날 때 발생되는 이벤트 //
+        // 5. mousedown() 메서드 -> $('요소').mousedown(이벤트핸들러) : 마우스의 버튼이 선택된 요소를 누르고 놓을 때까지 지속적으로 이벤트 핸들러가 수행된다. //
+        // 6. mouseup() 메서드 -> $('요소').mouseup(이벤트핸들러) : 마우스의 버튼으로 선택된 요소를 누르고 놓았을 떄 이벤트 핸들러가 수행된다. //
+
+        let n = 0
+        $('div.enterleave').mouseenter(function(){
+            n += 1
+            $(this).find('span').text('mouse enter x ' + n)
+        }).mouseleave(function(){
+            $(this).find('span').text('mouse leave')
+        })
+        $(function(){
+            $(document).on('mousemove', function(event){
+                $('.posX').text(event.pageX)
+                $('.posY').text(event.pageY)
+            })
+        })
+        $(function(){
+            $('ul li').hover(function(){
+                $(this).addClass('myclass1')},
+            function(){
+                $(this).removeClass('myclass1')
+            })
+        })
+        $(function(){
+            $('button').mousedown(function(){
+                $('div#btn').text('마우스가 눌려져 있습니다.')
+            })
+            .mouseup(function(){
+                $('div#btn').text('마우스를 놓았습니다.')
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>mouseenter() / mouseleave() 예제</h1>
+    <div class='out enterleave'>
+        <span>move your mouse</span>
+        <div class='in'> </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <h1>mousemove() 예제</h1>
+    <p>X : <span class='posX'>0</span>px</p>
+    <p>Y : <span class='posY'>0</span>px</p>
+
+    <h1>hover() 예제</h1>
+    <ul>
+        <li>건축공학과</li>
+        <li>전자공학과</li>
+        <li>소프트웨어학과</li>
+    </ul>
+
+    <h1>mousedown(), mouseup() 예제</h1>
+    <button>click me!</button>
+    <br>
+    <div id='btn'> </div>
+</body>
+</html>

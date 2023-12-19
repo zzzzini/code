@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            const color=["white","yellow","aqua","purple"];
+            let i=0;
+
+            function colorBg(){
+                i++;
+                if(i>=color.length){
+                    i=0;
+                }
+                const bodyTag=document.getElementsByTagName("body")[0];
+                bodyTag.style.backgroundColor=color[i];
+            }
+
+            window.onload=function(){
+                const btn2=document.getElementByID("btn1");
+                btn2.onclick=function(){
+                    colorBg();
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <button id="btn1">버튼1</button><p>
+        <button onClick="colorBg();">버튼2</button>
+    </body>
+</html>

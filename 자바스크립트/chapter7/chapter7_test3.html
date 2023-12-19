@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7장-3</title>
+    <script>
+        // 이벤트 객체란 웹 문서에서 발생되는 각종 이벤트에 대한 정보를 제공하는 객체이다. //
+        document.addEventListener('DOMContentLoad', () => {
+            const textarea = document.querySelector('textarea');
+            const h1 = document.quertSelector('h1');
+
+            textarea.addEventListener('keyup', (event) => {
+                const length = textarea.value.length;
+                h1.textContent = '글자 수 : ${length}';
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <textarea cols=20 rows=5></textarea>
+</body>
+</html>

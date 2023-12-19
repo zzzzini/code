@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리 효과의 개요와 Basic Effect 예시</title>
+    <style>
+        div {
+            background:#ff0000; width:200px; height:200px;
+        }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 효과 : CSS 효과를 사용해 역동적인 동작을 수행하도록 하는 기법 //
+        // Basic Effect, Fading Effect, Sliding Effect의 세가지를 제공한다. //
+        // Basic Effect : 가장 기본이 되는 효과로 요소를 나타내거나 숨기는 기능을 수행한다. //
+        // 1. hide() 메서드 -> $('요소').hide([duration],[easing],[callback function]) : 문서 객체를 감추는 동작을 수행한다. //
+        // 문서 객체를 제거하는 것은 아니다. duration은 hide() 메서드의 지속시간이고, easing은 내부 속도 변화를 지정하며, callback function은 호출되는 함수다. //
+        // 2. show() 메서드 -> $('요소').show([duration],[easing],[callback function]) : hide()에 의해 감춰진 요소나 display 값이 none인 요소를 출력한다. //
+        // 감춰져 있는 요소의 속성 값을 원래 지정된 값으로 증가시킨다. //
+        // 3. toggle() 메서드 -> $('요소').toggle([duration],[easing],[callback function]) : 문서 객체에 대해 hide()와 show() 메서드를 배타적으로 수행한다. //
+        // show()가 수행된 상태 -> hide() 수행, hide()가 수행된 상태 -> show() 수행 //
+
+        $(function(){
+            $('#show').click(function(){
+                $('img').show(1000)
+            })
+            $('#hide').click(function(){
+                $('img').hide(1000)
+            })
+        })
+        $(function(){
+            $('#toggle').click(function(){
+                $('div').toggle(2000)
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>hide(), show() 예제</h1>
+    <button id='hide'>hide()</button>
+    <button id='show'>show()</button><br>
+    <img src="../images/image1.JPG" alt='' width='300' height='300'>
+
+    <h1>toggle() 예제</h1>
+    <button id='toggle'>toggle</button>
+    <div> </div>
+
+</body>
+</html>

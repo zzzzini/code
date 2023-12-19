@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체 속성 값의 추출과 지정 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 속성 값의 지정과 추출 : 문서 객체가 가지는 속성 값을 추출하거나 지정한다. //
+        // attr() 메서드 -> $('요소').attr(속성명,[속성값|callback function])
+        // 선택된 요소의 속성 중 인자로 지정한 속성 값을 추출하거나 새로운 속성 값을 지정하는 메서드이다. //
+        // a. 인자로 속성명만 가질 경우 : 선택된 요소에서 인자로 지정된 속성의 값을 추출하여 반환한다. //
+        // b. 인자로 속성명과 속성값을 가지는 경우 : 선택된 요소에서 인자로 지정된 속성의 값을 지정한 새로운 값으로 변경한다. //
+        // c. 인자로 속성과 콜백함수를 가지는 경우 : 선택된 요소에서 인자로 지정된 속성의 값을 콜백함수의 수행 결과의 값으로 변경한다. //
+        // 선택자에 의해 선택된 DOM 요소가 하나 이상일 경우 맨 처음 요소의 속성 값을 추출하므로, 모든 요소의 속성을 추출하려면 each() 메서드를 사용해야 한다. //
+        
+        $(function(){
+            let first_width = $('img').attr('width')
+            $('span#a1').text(first_width)
+            $('img').attr('width', 200)
+            let second_width = $('img').attr('width')
+            $('span#a2').text(second_width)
+            $('img').attr('width', function(index){
+                return (index+1) * 100
+            })
+        })
+
+        // <form> 태그 요소의 속성 값 지정과 추출 : <form> 태그의 구성 요소들이 가지는 속성을 추출하거나 새로운 값으로 지정한다. //
+        // 1. prop() 메서드 -> $('요소').prop(속성명,true|false) : form 구성 요소에 checked, disabled, selected의 속성을 지정할 때 사용한다. //
+        // a.true를 지정할 경우 해당 속성의 값을 true로 지정하여 동작하게 한다. //
+        // b.false를 지정할 경우 기존에 적용되어 있는 속성의 값을 false로 지정하여 동작하지 못하게 한다. //
+        // 2. val() 메서드 -> $('요소').val([속성값|callback function]) : 선택된 요소의 초기값을 지정하거나 지정된 값을 추출한다. //
+        // attr(), prop() 메서드와 유사한 기능을 수행하지만, 주로 form요소의 값을 지정하거나 추출하는데 사용된다. //
+        // a. 인자를 가지지 않을 경우 : 선택된 요소에 지정된 초기 값을 추출한다. //
+        // b. 인자로 속성 값을 가지는 경우 : 선택된 요소의 초기 값을 인자로 지정한 값으로 변경한다. //
+        // c. 인자로 콜백 함수를 가지는 경우 : 선택된 요소의 초기 값을 콜백 함수의 결과에 해당하는 값으로 변경한다. //
+
+        $(function(){
+            $('input#nation').prop('disabled', true)
+            $('input#name').prop('disabled', false)
+            $('input#man').prop('checked', 'true')
+            $("input[type='checkbox']"),prop('disabled', 'true')
+        })
+        $(function(){
+            $('input#nation2').val(['대한민국'])
+            $('input:radio[name=gender2]').val(['f2'])
+            $('select#work2').val(['개발'])
+        })
+        $(function(){
+            $('input#nation3').keyup(function(){
+                var data = $(this).val()
+                $('span#input_nation').text(data)
+            })
+            $('input#name3').keyup(function(){
+                var data = $(this).val()
+                $('span#input_name').text(data)
+            })
+            $('input:radio').change(function(){
+                var str_gender =$('input:radio[name=gender3]:checked').val()
+                $('span#input_gender').text(str_gender)
+            })
+            $('select').change(function(){
+                var str_work = $('select#work3').val()
+                $('span#input_work').text(str_work)
+            })
+        })
+        $(function(){
+            $('input#pass').select()
+            $('input#pass').on('blur', function(){
+                $(this).val(function(key, item){
+                    return item.toUpperCase()
+                })
+            })
+        })
+
+        // removeAttr() 메서드 -> $('요소').removeAttr(속성명) : 선택된 요소의 속성 중 인자로 지정한 속성을 제거한다. //
+
+        $(function(){
+            let imgWidth = $('img').attr('width')
+            $('button').click(function(){
+                let my_img = $('img')
+                if(my_img.attr('width') == imgWidth){
+                    my_img.removeAttr('width')
+                } else {
+                    my_img.attr('width', imgWidth)
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>attr() 예제</h1>
+    <img src="../images/image1.JPG" width=400>
+    <br><br>
+    <div>너비 : <span id="a1"></span> </div>
+    <div>너비 : <span id="a2"></span> </div>
+    <br><br>
+    <img id='pic1' src="../images/image1.JPG">
+    <img id='pic2' src="../images/image1.JPG">
+    <img id='pic3' src="../images/image1.JPG">
+
+    <h1>prop() 예제</h1>
+    <form name='myform'>
+        국적 : <input type=text id='nation' name='nation' size='10' value='대한민국'><br>
+        성명 : <input type=text id='name' name='name' size='10' disabled><br>
+        성별 : <br>
+        <input type=radio id='man' name='gender' value='m'>남자<br>
+        <input type=radio id='woman' name='gender' value='f'>여자<br>
+        임무 : <br>
+        <input type=checkbox name='work' checked>정비
+        <input type=checkbox name='work'>개발<br>
+    </form>
+
+    <h1>val() 예제</h1>
+    <form name='myform2'>
+        국적 : <input type=text id='nation2' name='nation2' size='10' value='대한민국'><br>
+        성명 : <input type=text id='name2' name='name2' size='10' disabled><br>
+        성별 : <br>
+        <input type=radio id='man2' name='gender2' value='m2'>남자<br>
+        <input type=radio id='woman2' name='gender2' value='f2'>여자<br>
+        임무 : <br>
+        <select id='work2'>
+            <option value='정비'>정비</option>
+            <option value='개발'>개발</option>
+        </select>
+    </form>
+
+    <h1>val() 예제2</h1>
+    <form name='myform3'>
+        국적 : <input type=text id='nation3' name='nation3' size='10'><br>
+        성명 : <input type=text id='name3' name='name3' size='10'><br>
+        성별 : <br>
+        <input type=radio id='man3' name='gender3' value='남자'>남자<br>
+        <input type=radio id='woman3' name='gender3' value='여자'>여자<br>
+        임무 : <br>
+        <select id='work3'>
+            <option value='정비'>정비</option>
+            <option value='개발'>개발</option>
+        </select>
+    </form>
+    <hr>호
+    국적에 입력되는 값 : <span id='input_nation'></span><br>
+    성명에 입력되는 값 : <span id='input_name'></span><br>
+    성별에 입력되는 값 : <span id='input_gender'></span><br>
+    근무처를 선택한 값 : <span id='input_work'></span><br>
+
+    <h1>val() 예제3</h1>
+    여권 영문명 : <input type=text id='pass' name='passport' size='20'>
+    <br>
+    한글 이름 : <input type=text id='kor' name='name' size='20'>
+
+    <h1>removeAttr() 예제</h1>
+    <button>확대/축소</button><br>
+    <img src="../images/image1.JPG" width=100>
+
+</body>
+</html>

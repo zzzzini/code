@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7장-2</title>
+    <script>
+        // DOM Level 1 //
+        /* 표준 이벤트 모델은 하나의 문서 객체가 하나 이상의 이벤트 리스너를 가질 수 있는 방법을 제공한다.
+        이벤트를 연결하거나 해제할 수 있는 방법을 제공한다 */
+
+        // addEventListener() 메소드 형태 : addEventListener("이벤트 이름", 이벤트 핸들러); //
+        // 이벤트 이름의 경우 DOM Level 0과 달리 on을 이름 앞에 붙이지 않는다. //
+
+        // 익명 함수 사용 //
+        window.onload = function() {
+            let header = document.getElementById('a1');
+            header.addEventListener('click', function() {
+                alert('HELLO');
+            });
+
+        // 선언 함수 사용 //
+            let header2 = document.getElementById('a2');
+            function myClick() {
+                alert('HI');
+            }
+            header.addEventListener('click', myClick);
+        
+        // 화살표 함수 사용 //
+            let header3 = document.getElementById('a3');
+            header3.addEventListener('click', () => {
+                alert("BYE");
+            })
+
+        // 이벤트에는 콘텐츠가 로드된 후 발생하는 load이벤트와 html과 script가 로드되고 발생하는 DOMContentLoaded이벤트가 있다. //
+
+        // removeEventListener() 메소드 형태 : 요소.removeEventListener("이벤트이름", 이벤트 핸들러) //
+        h1.removeEventListener('click', myClick);
+
+        // 이벤트의 종류들은 책으로 학습 //
+        }
+    </script>
+</head>
+<body>
+    <h1 id="a1">Hello</h1>
+    <h1 id="a2">Hi</h1>
+    <h1 id="a3">Bye</h1>
+</body>
+</html>

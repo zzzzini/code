@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체의 삽입 예시</title>
+    <style>
+        #a1 {color:red}
+        p.txt {color:red}
+        p { margin:5px }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 문서 객체의 삽입 //
+        // 1. 내부 삽입 : 특정 요소를 문서 객체의 자식 요소로 삽입한다. //
+        // 2. 외부 삽입 : 특정 요소를 문서 객체의 형제 요소로 삽입한다. //
+        // 3. 포함 삽입 : 특정 요소를 문서 객체의 부모 요소로 삽입한다. //
+
+        // 객체 내부에 삽입 //
+        // 1. append() / appendTo() 메서드 -> $('요소').append(인자), $('요소').appendTo(요소) //
+        // 인자로 가지는 내용을 선택된 요소의 마지막에 새로운 자식 요소로 삽입한다. //
+        // 인자로 문자열, html 태그, 자바스크립트 함수, jQuery객체, 콜백함수가 올 수 있다. //
+        // 2. prepend() / prependTo() 메서드 -> $('요소').prepend(인자), $('요소').prependTo(요소) //
+        // 인자로 가지는 내용을 선택된 요소의 첫번째 자식 요소로 삽입한다. //
+        // 인자로 문자열, html 태그, 자바스크립트 함수, jQuery객체, 콜백함수가 올 수 있다. //
+        // 현재 문서에 존재하는 요소를 인자로 사용할 경우, 새로운 요소가 삽입되는 것이 아니라 지정한 인자가 이동하는 효과가 발생한다. //
+        // 3. html() 메서드 -> $('요소').html([인자]) : 선택된 요소의 내부 요소를 추출하거나 지정한다.(html코드 인식 가능) //
+        // 4. text() 메서드 -> $('요소').text([인자]) : 선택된 요소의 내부 요소를 추출하거나 지정한다.(html코드 인식 불가능) //
+        
+        $(function(){
+            $('div#container').prepend('<div>충주시 대학로 50</div>')
+            $('<div>충청북도</div>').prependTo('div#container')
+            $('div#container').append('<div>융합기술대학</div>')
+            $('<div>소프트웨어전공</div>').appendTo('div#container')
+
+            $('button#append').click(function(e) {
+                $('div#container2').append( $('div#container2 div:first') )
+            })
+            $('button#prepend').click(function(e) {
+                $('div#container2').prepend( $('div#container2 div:last') )
+            })
+            let str_html = $('div#p1').html()
+            $('div#p2 > span').html(str_html)
+            console.log(str_html)
+            let str_text = $('div#p1').text()
+            $('div#p3 > span').text(str_text)
+            console.log(str_text)
+        })
+
+        // 객체 외부에 삽입 //
+        // 1. after() / insertAfter() 메서드 -> $('요소').after(인자), $('인자').insertAfter(요소) //
+        // 인자로 가지는 내용을 선택된 요소의 다음 형제 요소로 삽입한다. //
+        // 인자로 문자열, html 태그, 자바스크립트 함수, jQuery객체, 콜백함수가 올 수 있다. //
+        // 2. before() / insertBefore() 메서드 -> $('요소').before(인자), $('인자').insertBefore(요소) //
+        // 인자로 가지는 내용을 선택된 요소의 이전 형제 요소로 삽입한다. //
+        // 인자로 문자열, html 태그, 자바스크립트 함수, jQuery객체, 콜백함수가 올 수 있다. //
+
+        $(function(){
+            $('#wrap p:eq(2)').after('<p>After</p>')
+            $('<p>insertAfter</p>').insertAfter('#wrap p:eq(1)')
+            $('#wrap p:eq(1)').before('<p>Before</p>')
+            $('<p>insertBefore</p>').insertBefore('#wrap p:eq(0)')
+        })
+
+        // 객체를 포함하는 삽입 //
+        // 1. wrap() 메서드 -> $('요소').wrap(인자) : 선택된 모든 요소들을 인자로 지정된 요소로 각각 감싼다. //
+        // 2. wrapAll() 메서드 -> $('요소').wrapAll(인자) : 선택된 요소를 하나의 단위로 하여 지정한 요소로 감싼다. //
+        // 3. wrapInner() 메서드 -> $('요소').wrapInner(인자) : 선택된 모든 요소의 자식요소를 인자로 지정된 요소로 각각 감싼다. //
+        // 4. unwrap() 메서드 -> $('요소').unwrap(인자) : 인자로 지정된 요소를 제거한다. //
+
+        $(function(){
+            $('button#btn').one('click', function(){
+                $('p').wrap('<b>')
+            })
+            $('button#btn2').one('click', function(){
+                $('p').wrapAll('<b>')
+            })
+            $('button#btn3').one('click', function(){
+                $('p').wrapInner('<b>')
+            })
+            var pTags = $('p')
+            $('button#btn4').click(function(){
+                if(pTags.is('<b>')){
+                    pTags.unwrap()
+                } else {
+                    pTags.wrap('<b>')
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>append(), prepend() 예제</h1>
+    <div id='container'>
+        <p>한국교통대학교</p>
+    </div>
+    
+    <br>
+
+    <h1>문서에 존재하는 요소를 인자로 사용할 경우의 예제</h1>
+    <div id='container2'>
+        <div> 한국교통대학교 </div>
+        <div> 융합기술대학 </div>
+        <div> 소프트웨어전공 </div>
+    </div>
+    <button id = 'append'>append</button>
+    <button id = 'prepend'>prepend</button>
+
+    <h1>html(), text() 예제</h1>
+    <div id='p1'>
+        <p id='a1'>Operating Systems</p>
+    </div>
+    <hr>
+    <div id='p2'>
+        html() 메서드를 사용한 경우 : <span></span>
+    </div>
+    <hr>
+    <div id='p3'>
+        text() 메서드를 사용한 경우 : <span></span>
+    </div>
+
+    <h1>after(), before() 예제</h1>
+    <div id="wrap">
+        <p class=txt>내용1</p>
+        <p class=txt>내용2</p>
+        <p class=txt>내용3</p>
+    </div>
+
+    <h1>wrap() 예제</h1>
+    <p>Operating Systems</p>
+    <p>Internet Programming</p>
+    <p>Java Programming</p>
+    <button id='btn'>wrap test</button>
+
+    <h1>wrapAll() 예제</h1>
+    <p>Operating Systems</p>
+    <p>Internet Programming</p>
+    <p>Java Programming</p>
+    <button id='btn2'>wrap test</button>
+
+    <h1>wrapInner() 예제</h1>
+    <p>Operating Systems</p>
+    <p>Internet Programming</p>
+    <p>Java Programming</p>
+    <button id='btn3'>wrap test</button>
+
+    <h1>unwrap() 예제</h1>
+    <p>Operating Systems</p>
+    <p>Internet Programming</p>
+    <p>Java Programming</p>
+    <button id='btn4'>unwrap test</button>
+
+</body>
+</html>

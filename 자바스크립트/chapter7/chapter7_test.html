@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7장</title>
+    <script>
+        // 이벤트는 마우스를 클릭하는등, 사용자가 수행한 행위로 특정 상황이 발생하는 것이며, 'on'을 붙여 표현 //
+
+        // 이벤트 핸들러는 on이벤트 = 이벤트핸들러의 형식으로 특정 이벤트를 처리하기 위해 수행하는 루틴이다. //
+
+        /* 이벤트 모델이란 문서 객체에 이벤트를 연결하는 방법을 말하며, DOM Level에 따라 두가지로 분류된다.
+        DOM Level 0 : 기본 이벤트(문서 객체 생성 후 이벤트 지정), 인라인 이벤트(html 태그에 직접 지정)
+        DOM Level 1 : 표준 이벤트 모델(모든 브라우저에 적용되도록 표준화된 이벤트 지정법) */
+
+        // DOM Level 0 //
+        const color = ["white", "yellow", "aqua", "purple"];
+        let i=0;
+        function colorBg() {
+            i++;
+            if(i>=color.length) {
+                i=0;
+            }
+            const bodyTag = document.getElementsByTagName("body")[0];
+            bodyTag.style.backgroundColor=color[i];
+        }
+        window.onload = function() {
+            const btn2 = document.getElementById("btn1");
+            btn2.onclick = function() { // 기본 이벤트 지정 //
+                colorBg;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <button id="btn1">버튼1</button><p>
+    <button onClick="colorBg();">버튼2</button>
+</body>
+</html>

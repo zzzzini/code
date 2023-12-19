@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터 메서드 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // filter() 메서드 -> $('요소').filter(선택자|필터|콜백함수) : 선택자와 필터만으로 선택이 불가능한 부분을 보완하기 위해 등장했다. //
+        // 1. 인자로 선택자를 가지는 경우 : 인자로 지정된 선택자에 의해 요소를 선택한다. //
+        // 2. 인자로 필터를 가지는 경우 : 인자로 지정된 필터에 해당하는 요소를 선택한다. //
+        // 3. 인자로 콜백함수를 가지는 경우 : 인자로 가지는 콜백 함수를 만족하는 요소만을 선택한다. //
+
+        $(function(){
+            $('#list li').filter(':even')
+            .css({'backgroundColor': 'yellow'})
+            $('#list li').filter(function (index) {
+                return index % 3 == 0;
+            }).css({'backgroundColor': 'black', 'color': 'red'});
+        })
+
+    </script>
+</head>
+<body>
+    
+    <ul id="list">
+        <li class="data">내용0 - index:0</li>
+        <li>내용1 - index:1</li>
+        <li>내용2 - index:2</li>
+        <li>내용3 - index:3</li>
+        <li>내용4 - index:4</li>
+        <li>내용5 - index:5</li>
+        <li>내용6 - index:6</li>
+    </ul>
+
+</body>
+</html>

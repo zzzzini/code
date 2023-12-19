@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본 이벤트와 이벤트 전달 예시</title>
+    <style>
+        div#box1 {
+            width:60px; height:60px; background:#999;
+            padding:20px 20px 20px 20px;
+        }
+        div#box2 {
+            width:60px; height:60px; background:#0F0;
+            border:#000 thin solid;
+        }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 기본 이벤트(default event) : 요소가 가지는 기본적인 이벤트 //
+        // 특정 이벤트가 발생되면 이미 지정되어 있는 이벤트 핸들러가 수행된다. 경우에 따라 기본 이벤트를 차단해야 하는 경우가 있다. //
+        // 기본 이벤트의 차단 : preventDefault() 메서드를 이용한다 //
+        /* $('a').click(function(e){
+            e.preventDefault()
+            alert('error')
+            }) */
+
+        $(function(){
+            $('input#btn').click(function(event){
+                let pw_val = $('input#pw').val()
+                let repw_val = $('input#repw').val()
+                if(pw_val != repw_val){
+                    event.preventDefault()
+                    alert('패스워드를 확인하세요')
+                }
+            })
+        })
+
+        // 이벤트의 전달 : 여러 요소가 중첩된 구조에서 이벤트가 발생할 경우 중첩된 구조 사이로 이벤트가 전달되는 현상 //
+        // capture phase, target phase, bubbling phase의 세가지 중 jQuery에서는 bubbling phase만을 지원한다. //
+
+        $(function(){
+            $('div#box1').click(function(e){
+                alert('바깥쪽 div를 클릭하셨습니다.')
+            })
+            $('div#box2').click(function(e){
+                alert('안쪽 div를 클릭하셨습니다.')
+                e.stopPropagation()
+            })
+        })
+
+        // 이벤트 전달 차단과 기본 이벤트 제거가 함께 해야 하는 경우 : preventDefault() 메서드와 stopPropagation() 메서드를 함게 적용해야 한다. //
+        // return false = preventDefault() + stopPropagation()인 구문이다. //
+        $(function(){
+            $('a').click(function (event){
+                $(this).css('background-color', 'blue')
+                return false // = preventDefault() + stopPropagation() //
+            })
+            $('h2').click(function(){
+                $(this).css('background-color', 'red')
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>기본 이벤트 차단 예제</h1>
+    <form name=login method='POST' action='login.jsp'>
+        <table width=300 align=center border='1' cellspacing=0>
+            <tr>
+                <td width=130>패스워드 입력</td>
+                <td width=170>
+                    <input type=text id=pw name=userpw size=15 required>
+                </td>
+            </tr>
+            <tr>
+                <td>패스워드 재입력</td>
+                <td>
+                    <input type=text id=repw name=userrepw size=15 required>
+                </td>
+            </tr>
+        </table>
+        <table width=300 align=center border='0'>
+            <tr>
+                <td align='center'><input type='submit' id='btn', value='확인'></td>
+            </tr>
+        </table>
+    </form>
+
+    <h1>이벤트의 전달 차단 예제</h1>
+    <div id='box1'>
+        <div id='box2'></div>
+    </div>
+
+    <h1>이벤트 전달 차단과 기본 이벤트 제거가 함께 진행되는 예제</h1>
+    <h2>
+        <a href='https://www.naver.com'>네이버</a>
+    </h2>
+</body>
+</html>

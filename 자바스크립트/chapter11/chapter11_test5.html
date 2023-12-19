@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기타 탐색 선택자 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+        
+        // 기타 탐색 선택자 //
+        // 1. contains() 필터 선택자 -> $('요소:contains(텍스트)') : 인자로 지정된 텍스트를 가지는 요소를 선택한다. //
+        // 2. has() 필터 선택자 -> $('요소:has(요소)') : 인자로 지정된 요소(태그)를 가지는 요소를 선택한다. //
+        // 3. empty 필터 선택자 -> $('요소:empty') : 내용을 가지지 않는 빈 요소를 반환한다. //
+        // 4. parent 필터 선택자 -> $('요소:parent') : 빈 요소가 아닌 요소들을 선택한다. //
+        // 5. is() 메서드 선택자 -> $('요소').is(요소) : 인자로 지정된 요소가 존재하는지 여부를 조사한다. //
+        // 6. slice() 메서드 선택자 -> $('요소').slice(start[,end]) : 인자로 지정된 범위에 존재하는 요소들을 반환한다. //
+        // 7. add() 메서드 -> $('요소').add(요소) : 선택된 범위를 확장하기 위한 메서드로, 이미 선택된 요소에 인자로 지정된 요소를 추가로 선택한다. //
+        // 8. end() 메서드 -> $('요소').end() : 요소가 선택되기 직전의 상태로 되돌린다. //
+
+        $(function(){
+            $('#inner_1 p:contains(내용1)').css('background-color', '#ff0')
+            $('#inner_1 p:has(strong)').css('background-color', '#0ff')
+            $('div#container li:parent').css('border', '1px solid red')
+            $('div#container li:empty').css('background-color','yellow')
+            $('h3').each(function(){
+                if($(this).is('.select')) {
+                    $(this).css('background', 'orange')
+                }
+            })
+            $('h4')
+            .slice(1,5).css('backgroundColor', 'red')
+            .slice(1,3).css('backgroundColor', 'yellow')
+            $('h5').slice(0,2).add('h5:last').css('backgroundColor', 'red')
+            $('h6').css('background', 'yellow')
+            .filter(':even').css('color', 'blue')
+            .end()
+            .filter(':odd').css('color', 'red')
+        })
+
+    </script>
+</head>
+<body>
+    
+    <selection id='inner_1'>
+        <h1>contains(), has() 예제</h1>
+        <p><span>내용1</span></p>
+        <p><strong>내용2</strong></p>
+        <p><strong>내용3</strong></p>
+    </selection>
+
+    <div id='container'>
+        <h1>empty(), parent() 예제</h2>
+        <ul class='nav1'>
+            <li> banana </li>
+            <li></li>
+            <li>
+            </li>
+            <li>   </li>
+        </ul>
+    </div>
+
+    <h1>is.empty() 예제</h1>
+    <h3 class='select'>Header-0</h3>
+    <h3>Header-1</h3>
+    <h3 class='select'>Header-2</h3>
+    <h3>Header-3</h3>
+
+    <h1>slice 예제</h1>
+    <h4>은</h4>
+    <h4>떠</h4>
+    <h4>따</h4>
+    <h4>랑</h4>
+    <h4>행</h4>
+    <h4>❤️</h4>
+
+    <h1>add() 예제</h1>
+    <h5>Header-0</h5>
+    <h5>Header-1</h5>
+    <h5>Header-2</h5>
+    <h5>Header-3</h5>
+    <h5>Header-4</h5>
+    <h5>Header-5</h5>
+
+    <h1>end() 예제</h1>
+    <h6>Header-0</h6>
+    <h6>Header-1</h6>
+    <h6>Header-2</h6>
+    <h6>Header-3</h6>
+    <h6>Header-4</h6>
+    <h6>Header-5</h6>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리 이벤트의 개요 및 이벤트의 등록과 해제 메서드 예시</title>
+    <style>
+        .myclass {
+            background:blue;
+            color:white;
+        }
+        * { margin:0px; padding:0px; }
+        div {
+            margin:10px; padding:10px; width:350px;
+            border:3px solid black; border-radius:5px;
+        }
+        .myclass2 { background:black; color:white; }
+        div#rect { width:200px; height:200px; background:red; border-radius:10px; }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 제이쿼리 이벤트를 등록하는 방법 //
+        // 방법 1 : 요소에 직접 이벤트를 지정하기 -> $('요소').이벤트(function(){ 이벤트핸들러 내용 }) //
+        // 요소에 하나의 이벤트만 등록할 수 있다. //
+        // 방법 2 : 이벤트 등록 메서드를 사용하기 -> $('요소').이벤트등록메서드(이벤트,function(){ 이벤트핸들러 내용 }) //
+        // 요소에 하나 이상의 이벤트를 등록할 수 있다. //
+
+        // 여러 개의 이벤트가 동일한 이벤트핸들러를 가지도록 지정할 수 있다. //
+        // $('요소').이벤트등록메서드('이벤트1,이벤트2,...이벤트n',function(){ 이벤트핸들러 내용 }) //
+        // 하나의 요소에 서로 다른 이벤트핸들러를 가지는 여러 개의 이벤트를 지정할 수 있다. //
+        /* $('요소').이벤트연결메서드(
+            '이벤트1':function(){ 이벤트핸들러 내용 },
+            '이벤트2':function(){ 이벤트핸들러 내용 },
+            ...,
+            '이벤트n':function(){ 이벤트핸들러 내용 }
+        ) */
+
+        // 제이쿼리 이벤트의 제거 : 특정 이벤트에 연결을 제거하여 이벤트의 수행을 중지시키는 것을 의미한다. //
+        // 해당 이벤트에 연결된 이벤트들 중 일부 이벤트를 제거하거나 전체를 제거할 수 있다. //
+        // 제이쿼리 이벤트를 해제하는 방법 -> $('요소').이벤트연결해제메서드(이벤트) //
+
+        // 이벤트의 등록과 해제 메서드 //
+        // 1. on() 메서드 : 선택자에 의해 선택된 객체에 하나 이상의 이벤트를 등록한다. //
+        // 선택한 요소에 대해 하나 이상의 이벤트를 등록하면 각 이벤트마다 각각의 이벤트핸들러가 수행된다. //
+        /* $('요소').on(
+            '이벤트1':function(){ 이벤트핸들러 내용 },
+            '이벤트2':function(){ 이벤트핸들러 내용 },
+            ...,
+            '이벤트n':function(){ 이벤트핸들러 내용 }
+        ) */
+        // 2. off() 메서드 -> $('요소').off([이벤트]) : on() 메서드에 의해 선택된 요소에 연결된 이벤트 중 인자로 지정된 이벤트를 제거한다. //
+        // a. off() 메서드가 인자로 이벤트이름을 가질 경우 : 연결된 모든 이벤트들 중 off() 메서드의 인자로 지정된 이벤트를 제거한다. //
+        // b. off() 메서드가 인자를 가지지 않을 경우 : on() 메서드를 통해 연결되어 있는 모든 이벤트들을 제거한다. //
+
+        $(function(){
+            $('ul li').on('click', function(){
+                alert($(this).text())
+            })
+            $('ul li').on({
+                mouseenter: function(){$(this).addClass('myClass')},
+                mouseleave: function(){$(this).removeClass('myClass')}
+            })
+            $('#btn1').click(function(){
+                $('ul li').off('click')
+            })
+            $('#btn2').click(function(){
+                $('ul li').off()
+            })
+        })
+
+        // on() 메서드의 문제점 : 새로 생성되는 객체에 대해 이벤트를 연결하지 못한다. (현재 존재하는 객체에만 이벤트 적용 가능) //
+
+        $(function(){
+            $('#div1').on('click', function(){
+                $(this).clone().appendTo('body')
+            })
+        })
+
+        // on() 메서드 문제점의 해결 방안 -> $('요소').on(이벤트, 객체, function(){ 이벤트 핸들러의 내용 }) //
+        // 새로 생성되는 객체에 이벤트를 적용할 필요가 없는 경우 이 방법을 사용할 필요가 없다. // 
+
+        $(function(){
+            $('body').on('click', '#div2', function(){
+                $(this).clone().appendTo('body')
+            })
+        })
+
+        // 3. one() 메서드 -> $('요소').one(이벤트, function(){ 이벤트핸들러 내용 }) : 선택된 요소에 이벤트를 한번만 연결한다. //
+        // 이벤트 수행 후 이벤트가 자동 소멸되므로 별도의 제거 메서드가 없다. //
+        // 4. trigger() 메서드 -> $('요소').trigger(이벤트) : 특정 요소에 연결된 이벤트를 강제로 발생할 수 있는 기능을 수행한다. //
+        // 요소 : 수행하고자 하는 이벤트가 지정되어 있는 요소. 이벤트 : 해당 요소에 지정되어 있는 이벤트. //
+        
+        $(function(){
+            $('ul li').one('click', function(){
+                alert($(this).text())
+            })
+        })
+        $(function(){
+            $('div#rect').click(function(){
+                $(this).toggleClass('myclass')
+            })
+            $('#btn3').click(function(){
+                $('div#rect').trigger('click')
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>on(), off() 예제</h1>
+    <ul id="nav">
+        <li>한국교통대학교</li>
+        <li>소프트웨어전공</li>
+    </ul>
+    <button id="btn1">click 이벤트 제거</button>
+    <button id="btn2">모든 이벤트 제거</button>
+
+    <h1>on() 메서드의 문제점</h1>
+    <div id=div1>
+        <h3>원래부터 존재한 원본은 복사가 되지만</h3>
+        <h5>새로 생성된 복제본은 복사가 안됩니다</h5>
+    </div>
+
+    <h1>on() 메서드의 문제점 해결</h1>
+    <div id=div2>
+        <h3>이 방법을 사용하여 문제를 해결하면</h3>
+        <h5>새로 생성된 복제본도 복사가 됩니다</h5>
+    </div>
+
+    <h1>one() 예제</h1>
+    <ul>
+        <li>한국교통대학교</li>
+        <li>소프트웨어전공</li>
+    </ul>
+
+    <h1>trigger() 예제</h1>
+    <div id='rect'> click </div><br>
+    <button id='btn3'>trigger</button>
+
+</body>
+</html>

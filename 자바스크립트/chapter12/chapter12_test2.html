@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체의 제거 예시</title>
+    <style>
+        ul {
+            background:yellow; margin:4px;
+            border:1px solid red;
+            width:100px; height:120px;
+        }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 문서 객체의 제거 : 인자로 지정된 기존의 요소를 제거하기 위해 사용한다. //
+        // 1. remove() 메서드 -> $('요소').remove([인자]) : 선택된 모든 요소가 가지고 있는 특정 자식 요소나 모든 자식 요소를 제거한다. //
+        // 선택된 요소 자신도 함께 제거된다. (제거되는 요소에 대한 모든 이벤트 및 데이터들도 함께 제거) //
+        // 인자를 가지지 않는 경우, 선택된 모든 요소와 그 자식요소들을 제거하며, 인자를 가지는 경우, 인자로 지정된 요소와 그 자식요소를 제거한다. //
+        // 2. empty() 메서드 -> $('요소').empty() : 선택된 모든 요소가 가지고 있는 모든 자식요소를 제거한다. //
+        // 선택된 요소 자신은 포함되지 않는다. (제거되는 요소에 대한 모든 이벤트와 데이터들도 함께 제거) //
+        // 3. detach() 메서드 -> $('요소').detach() : 선택된 요소를 제거하여 지정된 변수에 저장한다. //
+        // 제거되어 저장된 요소는 삽입하는 메서드를 사용해 특정 위치에 삽입이 가능하다. (오려두기와 비슷한 기능) //
+
+        $(function(){
+            $('ul.op1').remove()
+        })
+        $(function(){
+            $('ul.op3').empty()
+        })
+        $(function(){
+            let str
+            $('button#btn').click(function(){
+                if(!str){
+                    str=$('ul.op6').detach()
+                } else{
+                    str.insertAfter('ul.op5')
+                    str=null
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>remove() 예제</h1>
+    <ul class='op1'>
+        <li>산술연산자</li>
+        <li>증감연산자</li>
+    </ul>
+    <ul class='op2'>
+        <li>논리연산자</li>
+        <li>템플릿연산자</li>
+    </ul>
+
+    <h1>empty() 예제</h1>
+    <ul class='op3'>
+        <li>산술연산자</li>
+        <li>증감연산자</li>
+    </ul>
+    <ul class='op4'>
+        <li>논리연산자</li>
+        <li>템플릿연산자</li>
+    </ul>
+
+    <h1>detach() 예제</h1>
+    <ul class='op5'>
+        <li>산술연산자</li>
+        <li>증감연산자</li>
+    </ul>
+    <ul class='op6'>
+        <li>논리연산자</li>
+        <li>템플릿연산자</li>
+    </ul>
+    <button id='btn'>제거/삽입</button>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체의 복사와 대치 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 문서 객체의 복사 : 특정 문서 객체를 복사하여 다른 위치로 복사한다. //
+        // clone() 메서드 -> $('요소').clone([true|false]) : 선택된 요소를 복사하는 기능을 수행한다. //
+        // 인자로 true를 가지면 선택된 요소와 포함된 이벤트까지 복사하고, false를 가지면 이벤트를 제외한 선택된 요소만을 복사한다. (기본값 : false) //
+
+        $(function(){
+            $('li').on('click', function(){
+                alert('이벤트 확인')
+            })
+            $('#btn1').on('click', function(){
+                $('li:first').clone().appendTo('ul').css('color', 'red')
+            })
+            $('#btn2').on('click', function(){
+                $('li:first').clone(true).appendTo('ul').css('color', 'blue')
+            })
+        })
+
+        // 문서 객체의 대치 : 특정 문서 객체를 다른 문서 객체로 대치한다. //
+        // replaceWith() / replaceAll() 메서드 -> $('요소').replaceWith(인자), $('인자').replaceAll(요소) //
+        // 선택자에 의해 선택된 요소를 인자로 지정한 내용으로 대치한다. //
+
+        $(function(){
+            $('#btn3').click(function(){
+                $('p').first().replaceWith('<h1>한국교통대학교</h1>')
+                $('<h1>소프트웨어전공</h1>').replaceAll('p:first')
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+    
+    <h1>clone() 예제</h1>
+    <ul>
+        <li>클릭하세요</li>
+    </ul>
+    <button id='btn1'>clone()</button>
+    <button id='btn2'>clone(true)</button>
+
+    <h1>replaceWith(), replaceAll() 예제</h1>
+    <p>한국교통대학교</p>
+    <p>소프트웨어전공</p>
+    <button id='btn3'>대치</button>
+
+</body>
+</html>

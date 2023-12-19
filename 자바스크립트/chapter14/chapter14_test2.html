@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fading Effect 예시</title>
+    <style>
+        div {
+            margin:3px; width:100px; height:100px;
+            float:left; border-radius:5px;
+        }
+        div#one { background:#f00; }
+        div#two { background:#0f0; }
+    </style>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // Fading Effect : 객체를 점진적으로 감추거나 보이는 동작을 수행하는 효과를 지정한다. //
+        // 1. fadeOut() 메서드 -> $('요소').fadeOut([duration],[easing],[callback function]) : 선택된 요소에 대해 투명도를 조절하여 감추는 기능을 수행한다. //
+        // width와 height를 변화시키지 않는 것을 빼고는 hide()와 동일하다. //
+        // 2. fadeIn() 메서드 -> $('요소').fadeIn([duration],[easing],[callback function]) : 선택한 요소에 대해 투명도를 조절하여 화면에 출력하는 기능을 수행한다. //
+        // width와 height를 변화시키지 않는 것을 빼고는 show()와 동일하다. //
+        // 3. fadeToggle() 메서드 -> $('요소').fadeToggle([duration],[easing],[callback function]) : fadeIn()과 fadeOut()을 배타적으로 수행한다. //
+        // 요소가 화면에 보이지 않게 지정된 경우 -> fadeIn() 수행, 요소가 화면에 보이도록 지정된 경우 -> fadeOut() 수행 //
+        // 4. fadeTo() 메서드 -> $('요소').fadeTo(duration, opacity, [easing], [callback function]) : 선택한 요소에 대해 임의의 opacity를 지정하는 기능을 수행한다. //
+        // duration과 opacity를 생략할 수 없으며, opacity는 투명도이다. //
+
+        $(function(){
+            $('div').click(function(){
+                $(this).fadeOut(2000)
+            })
+        })
+        $(function(){
+            $('button#btn').click(function(){
+                $('div:hidden:first').fadeIn(2000)
+            })
+        })
+        $(function(){
+            $('body').append('<p></p>')
+            $('button').click(function(){
+                var opacity = $(this).attr('title')
+                $('img').fadeTo(1000, opacity, function(){
+                    $('p').empty()
+                    $('p').append('opacity : '+$(this).css('opacity')+'<br/>')
+                })
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>fadeOut(), fadeIn() 예제</h1>
+    <div id='one'></div>
+    <div id='two'></div>
+    <br clear='left'>
+    <button id='btn'>Click Here!</button>
+
+    <h1>fadeTo() 예제</h1>
+    <img src="../images/image1.JPG" alt='' width='300' height='300'>
+    <br>
+    <button title='0'>0</button>
+    <button title='0.2'>0.2</button>
+    <button title='0.4'>0.4</button>
+    <button title='0.6'>0.6</button>
+    <button title='0.8'>0.8</button>
+    <button title='1'>1</button>
+
+</body>
+</html>

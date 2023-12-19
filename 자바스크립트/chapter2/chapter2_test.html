@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2장</title>
+    <script>
+        
+        // 한 라인 주석입니다. //
+
+        /* 다중 라인
+        주석입니다 */
+
+        document.write("페이지에 문장을 남깁니다.", "<br>");
+        document.write("같은 따옴표 안에 같은 따옴표를 또 넣을수는 없습니다.", "<br>");
+        document.write("\"다만 이렇게 '다른' 따옴표는 넣을 수가 있습니다.\"", "<br>");
+        function Mybutton() // 함수타입 정의하기 //
+        {
+            alert('발작');
+        }
+        const data1 = "aaa"; // 상수 선언 > 반드시 값을 지정해줘야하며, 바꾸면 안됩니다. //
+        let data2 = 1234; // 변수 선언 > 동일 이름으로 중복 선언하면 안되며 값 재지정이 가능합니다. //
+        // 상수와 변수 선언시 타입은 선언하지 않아도 됩니다~ //
+
+        let num = "10"; // 문자형 자료를 저장했으나 //
+        let num2 = Number(num); // Number() 메소드나 //
+        let num3 = parseInt(num); // parseInt() 메소드를 활용해서 정수로 저장이 됩니다. //
+        document.write("num의 자료형 : ", typeof num, "<br>"); // type of 변수 연산자로 자료형을 출력할 수 있습니다. //
+        document.write("num2의 자료형 : ", typeof num2, "<br>");
+        document.write("num3의 자료형 : ", typeof num3, "<br>");
+        let data = "한국교통대학교";
+        document.write("data의 현재 자료형 : ", typeof data, "<br>");
+        data = 200; // 문자열에서 정수형으로 묵시적 형변환이 일어납니다. //
+        document.write("data를 묵시적 형변환 한 후의 자료형 : ", typeof data, "<br>");
+        document.write("+연산자로 사칙연산을 실시하면 모든 숫자 자료형을 문자형으로 변환합니다. 마치 '52'+273 = ", '52'+273, "<br>");
+
+    </script>
+</head>
+<body onLoad = "javascript:alert('환영합니다.')";> <!--  << 인라인 타입! -->
+    <!--HTML에서는 주석을 이렇게 씁니다 -->
+    <input type = "button" value = "발작버튼" onClick = "javascript:Mybutton()"> <!-- 이것은 함수타입! -->
+
+</body>
+</html>

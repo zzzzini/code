@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터링 메서드와 위치 탐색 선택자의 예시</title>
+    <script src="../script/jquery-3.6.0.js"></script>
+    <script>
+
+        // 필터링 메서드 -> filter() + 필터 : filter() 메서드와 필터 조합 일부를 메서드 형태로 표현한 것이다. //
+        // 1. first() 메서드 -> $('요소').first() : 선택된 요소들 중 첫 번째의 요소를 선택한다. //
+        // 2. last() 메서드 -> $('요소').last() : 선택된 요소들 중 마지막의 요소를 선택한다. //
+
+        $(function(){
+            $('#list li').first().css('background', 'red')
+            $('#list li').last().css('background', 'green')
+        })
+
+        // 필터링 메서드를 사용하는 이유 //
+        // 1. 메서드 체이닝 사용 가능 : 메서드를 연결하여 동시에 적용하는 기법의 사용이 가능하다. //
+        // 2. 필터보다 필터링 메서드가 빠르다 : 더 나중에 개발되어 속도도 빠른 편이다. //
+
+        // 필터형 위치 탐색 선택자 //
+        // 1. first-of-type 필터 선택자 -> $('요소:first-of-type') : 선택된 요소 중에서 부모 노드마다 각각 첫번째 자식 요소가 선택된다. //
+        // 2. last-of-type 필터 선택자 -> $('요소:last-of-type') : 선택된 요소 중에서 부모 노드마다 각각 마지막 자식 요소가 선택된다. //
+        // first-of-type 필터 선택자 : 선택된 요소 중 지정한 요소의 첫번째 요소여야 하지만, 반드시 첫번째 요소가 아니어도 된다. //
+        // first-child 필터 선택자 : 선택된 요소 중 필터로 지정한 요소가 반드시 첫번째 요소여야 하고, 첫번째 요소가 아니면 효과가 적용되지 않는다. //
+        // last-child와 last-of-type의 차이점도 위와 동일하다. //
+        // 3. only-child 필터 선택자 -> $('요소:only-child') : 선택된 요소 중에서 형제 노드가 없는 요소를 선택한다. //
+        // 4. eq() 메서드 선택자 -> $('요소:eq(index)') : 선택된 요소들 중에서 인자로 지정된 index에 해당하는 요소를 선택한다. //
+        // index가 0인 경우, 선택된 요소 중 첫번째 요소를 반환한다. //
+        // index가 양수인 경우, 선택된 요소의 첫번째 요소부터 n번째 요소를 반환한다. //
+        // index가 음수인 경우, 선택된 요소의 마지막 요소부터 n번째 요소를 반환한다. //
+        // 5. gt() 메서드 선택자 -> $('요소:gt(index)') : 선택된 요소들 중에서 인자로 지정된 index보다 큰 index를 가진 요소들을 모두 선택한다. //
+        // 6. lt() 메서드 선택자 -> $('요소:lt(index)') : 선택된 요소들 중에서 인자로 지정된 index보다 작은 index를 가진 요소들을 모두 선택한다. //
+        // 7. not() 메서드 선택자 -> $('요소:not(index)') : 선택된 요소들 중에서 인자로 지정된 index의 요소를 제외한 모든 요소를 선택한다. //
+        // 8. nth-child() 필터 선택자 -> $('요소:nth-child(인자)') : 선택된 요소 중에서 인자로 지정된 규칙에 만족하는 요소를 선택한다. //
+        // 인자로는 숫자, even, odd, 수식이 올 수 있다. //
+        // 9. nth-last-child() 메서드 선택자 -> $('요소:nth-last-child(인자)') : 선택된 요소 중에서 마지막 요소부터 인자로 지정된 규칙에 만족하는 요소를 선택한다. //
+
+        $(function(){
+            $('div p:first-of-type')
+            .css('background-color','#0ff')
+            $('div p:first-child')
+            .css('color','#f00')
+            $('div p:last-of-type')
+            .css('border','2px dashed red');
+            $('div p:last-child')
+            .css('color','#f00')
+
+            $('li:only-child').css('border','2px dashed blue')
+
+            $('#list2 li:eq(1)').css('background','orange')
+            $('#list2 li').eq(-2).css('background','red')
+            $('#list2 li').eq(0).css('background','yellow')
+
+            $('#list3 li:lt(2)').css('background-color','#f00')
+            $('#list3 li:gt(2)').css('background-color','#00f')
+            $('#list3 li:not(:eq(2))').css('color','#fff')
+            
+            $('#menu1 li:nth-child(1)').css('background-color', '#ff0')
+            $('#menu1 li:nth-child(2n').css('border', '2px dashed #f00')
+            $('#menu2 li:nth-last-child(2)').css('background-color', '#0ff')
+        })
+
+    </script>
+</head>
+<body>
+    
+    <ul id='list'>
+        <li class='data'>내용0 - index:0</li>
+        <li>내용1 - index:1</li>
+        <li>내용2 - index:2</li>
+        <li>내용3 - index:3</li>
+        <li>내용4 - index:4</li>
+        <li>내용5 - index:5</li>
+        <li>내용6 - index:6</li>
+    </ul>
+
+    <div id='container'>
+        <div class='nav1'>
+            <div> 0 - 서울 (div) </div>
+            <p> 1 - 부산 (p) </p>
+            <p> 2 - 대구 (p) </p>
+            <p> 3 - 인천 (p) </p>
+        </div>
+        <br>
+        <div class='nav2'>
+            <p> 0 - SEOUL (p) </p>
+            <p> 1 - BUSAN (p) </p>
+            <p> 2 - DAEGU (p) </p>
+            <div> 3 - INCHEON (div) </div>
+        </div>
+    </div>
+
+    <ul>
+        <li> only-child 적용 불가 </li>
+        <li> only-child 적용 불가 </li>
+    </ul>
+    <ul>
+        <li> only-child 적용 가능 </li>
+    </ul>
+
+    <ul id='list2'>
+        <li class='data'>eq(0)에 해당하는 내용</li>
+        <li>eq(1)에 해당하는 내용</li>
+        <li>eq(-2)에 해당하는 내용</li>
+        <li>전혀 해당하지 않는 내용</li>
+    </ul>
+
+    <ul id='list3'>
+        <li class='data'>li:gt(2)의 영향을 받음</li>
+        <li>li:gt(2)의 영향을 받음</li>
+        <li>li:not(:eq(2))의 영향을 받음</li>
+        <li>li:lt(2)의 영향을 받음</li>
+        <li>li:lt(2)의 영향을 받음</li>
+    </ul>
+
+    <ul id='menu1'>
+        <li>nth-child(1)의 영향을 받음</li>
+        <li>nth-child(2n)의 영향을 받음</li>
+        <li>아무런 영향을 받지 못함</li>
+        <li>nth-child(2n)의 영향을 받음</li>
+    </ul>
+    <ul id='menu2'>
+        <li>아무런 영향을 받지 못함</li>
+        <li>nth-last-child(2)의 영향을 받음</li>
+        <li>아무런 영향을 받지 못함</li>
+    </ul>
+
+</body>
+</html>

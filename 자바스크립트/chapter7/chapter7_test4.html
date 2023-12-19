@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7장-4</title>
+    <script>
+        // form 입력 양식 관련 이벤트 //
+        documnet,addEventListener('DOMContentLoaded', () => {
+            let currentValue;
+            let factor = 10;
+            const select = document.querySelector('selec');
+            const input = document.querySelector('input');
+            const span = document.querySelctor('span');
+            const caculate = () => {
+                span.textContent = (currentValue*factor).toFixed(2);
+            }
+            select.addEventListener('change', (event) => {
+                const options = event.currentTarget.options;
+                const index = event.currentTarget.options.selectedIndex;
+                factor = Number(options[index].value);
+                caculate();
+            })
+            input.addEventListener('keyup', (event) => {
+                currentValue = Number(event.currentTarget.value);
+                caculate();
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type=text> cm = <span></span>
+    <select>
+        <option value=10>mm</option>
+        <option value=0.01>m</option>
+        <option value=0.393701>inch</option>
+    </select>
+</body>
+</html>
