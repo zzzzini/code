@@ -1,0 +1,31 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <stdio.h>
+
+using namespace cv;
+using namespace std;
+
+void contrast2()
+{
+    Mat src = imread("/Users/jin/img/lenna.bmp", IMREAD_GRAYSCALE);
+    
+    if (src.empty()) {
+        cerr << "Image load failed!" << endl;
+        return;
+    }
+    
+    float alpha = 1.f;
+    Mat dst = src + (src - 128) * alpha;
+    
+    imshow("src", src);
+    imshow("dst", dst);
+    
+    waitKey();
+    destroyAllWindows();
+}
+
+int main()
+{
+    contrast2();
+    return 0;
+}

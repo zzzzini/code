@@ -1,0 +1,31 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <stdio.h>
+
+using namespace cv;
+using namespace std;
+
+void color_grayscale()
+{
+    Mat src = imread("/Users/jin/img/butterfly.jpg");
+    
+    if (src.empty()) {
+        cerr << "Image load failed!" << endl;
+        return;
+    }
+    
+    Mat dst;
+    cvtColor(src, dst, COLOR_BGR2GRAY);
+    
+    imshow("src", src);
+    imshow("dst", dst);
+    
+    waitKey();
+    destroyAllWindows();
+}
+
+int main()
+{
+    color_grayscale();
+    return 0;
+}

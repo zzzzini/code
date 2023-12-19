@@ -1,0 +1,32 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <stdio.h>
+
+using namespace cv;
+using namespace std;
+
+void mask_copyTo()
+{
+    Mat src = imread("/Users/jin/img/airplane.bmp");
+    Mat mask = imread("/Users/jin/img/mask_plane.bmp");
+    Mat dst = imread("/Users/jin/img/field.bmp");
+    
+    if (src.empty() || mask.empty() || dst.empty()) {
+        cerr << "Image load failed!" << endl;
+        return;
+    }
+    
+    src.copyTo(dst, mask);
+    
+    imshow("dst", dst);
+    
+    waitKey();
+    destroyAllWindows();
+}
+
+int main()
+{
+    mask_copyTo();
+    
+    return 0;
+}
