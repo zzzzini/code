@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title> 메인 페이지 </title>
+	<style>
+		* {
+			font-family : '고딕' sans-serif;
+		}
+		body {background-color: black;}
+		h1 {
+			text-align : center;
+			color : white;
+		}
+		h2 {
+			text-align : left;
+			color : white;
+			font-size : 1.5em;
+		}
+		p {
+			color : white;
+		}
+		section {
+			color : white;
+		}
+		#container {
+            width : 800px;
+            margin : 0 auto;
+            padding : 5px;
+		}
+		#header {
+			padding : 20px;
+			margin-bottom : 20px;
+		}
+		#contents {
+			width : 400px;
+			height : 500px;
+			float : left;
+			margin-bottom : 20px;
+			border : 0.1px solid white;
+			background-image : url('bg2.jpeg');
+			background-repeat : no-repeat;
+			background-size : 400px 500px;
+
+		}
+		#left-sidebar {
+			width : 170px;
+			float : left;
+			margin-bottom : 20px;
+			margin-right : 20px;
+			border : 0.1px solid white;
+			padding : 7px;
+		}
+		#right-sidebar {
+			width : 140px;
+			float : right;
+			margin-bottom : 20px;
+			margin-right : 40px;
+		}
+		#footer {
+			clear : both;
+			border : 0.1px solid ivory;
+			padding : 7px;
+			color : black;
+			background-color: ivory;
+		}
+		#footer2 {
+			clear : both;
+			border : 0.1px solid white;
+			padding : 7px;
+			color : black;
+			background-color:  ivory;
+		}
+		a {
+			text-decoration : none;
+			color : lightskyblue;
+		}
+		.black {
+			color : black;
+			font-size : 1.2em;
+			}
+		thead {
+			text-align : center;
+			background-color : lightgray;
+			color : black;
+		}
+		td {
+			text-align : center;
+			background-color : bisque;
+			color : black;
+		}
+		.lhl {
+            font-size : 1.2em;
+            font-weight : bold;
+        }
+		#ani {
+			width : 100px;
+			height : 100px;
+			border : 1px solid white;
+			background-image : url("hi.png");
+			background-size : 100px 100px;
+			background-repeat : none;
+			animation-name : move;
+			animation-duration : 7s;
+		}
+		@keyframes move {
+			from {
+				transform : translate(0px)
+			}
+			to {
+				transform : translate(650px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<audio autoplay loop preload = "metadata auto">
+		<source src="NY.mp3" type="audio/mp3">
+	</audio>
+	<div id = "container">
+	<div id = "header">
+		<p id="top"></p>
+		<img src = "logo.jpeg" width = "750" height = "50">
+		<h1> 포켓몬스터 10기 공식 팬클럽 </h1>
+		<div id = "ani"></div>
+	</div>
+	<hr>
+	<div id = "left-sidebar">
+		<h2> 메뉴 </h2>
+		<a href = "music.html" target = "_blank"> 매드몬스터의 음악 </a> 
+		<br>
+		<br>
+		<a href = "ipduk.html" target = "_blank"> 매드몬스터 입덕직캠 </a>
+		<br>
+		<br>
+		<a href = "disaster.html" target = "_blank"> 논란 및 사건사고</a>
+		<br>
+		<br>
+		<a href = "#profile"> 매드몬스터의 프로필 </a>
+	</div>
+	<div id = "right-sidebar">
+		<br>
+		<form action="login.php" autocomplete="off" method="post">
+			<section>
+				<fieldset align = "right">
+					<legend> 로그인 정보 </legend>
+							<label> <span class = "black"> 공백 </span></label>
+							<label for="id"> 아이디</label>
+							<input type="text" id="id" size="20">
+							<label> <span class = "black"> 공백 </span></label>
+							<br>
+							<label for="pwd"> 비밀번호 </label>
+							<input type="text" pwd="pwd" size="20">
+							<label> <span class = "black"> 공백 </span></label>
+							<button type="submit">로그인</button>
+				</fieldset>
+			</section>
+		</form>
+	</div>
+	<div id = "contents">
+	</div>
+	<div id = "footer">
+		<br>
+		<table id = "profile" align = "center">
+			<thead>
+				<th colspan = "5"> 멤버 프로필 </th>
+			</thead>
+			<tr>
+				<td> 이름 </td>
+				<td> 나이 </td>
+				<td> 포지션 </td>
+				<td> 키 </td>
+				<td> 몸무게 </td>
+			</tr>
+			<tr>
+				<td> 탄 </td>
+				<td> 23세 </td>
+				<td> 리더, 메인보컬 </td>
+				<td> 179cm </td> 
+				<td> 미공개 </td>
+			</tr>
+			<tr>
+				<td> 제이호 </td>
+				<td> 22세 </td>
+				<td> 리드보컬, 메인댄서 </td> 
+				<td> 189cm </td>
+				<td> 미공개 </td>
+			</tr>
+		</table>
+		<br>
+	</div>
+	<div id = "footer2">
+		<label class = "lhl"> 매몬을 향한 당신의 애정도 : 80% </label>
+		<progress value="80" max="100"> </progress><br>
+		<br>
+		<span class = "black"><span class = "lhl"> 매몬과 포몬의 영향력 </span></span>
+		<ul>
+			<li>
+				<label> 매몬의 음악시장 점유율 : 90% </label>
+				<meter value="0.9"></meter>
+			</li>
+			<li>
+				<label> 한국인의 포켓몬스터 회원 비율 : 89% </label>
+				<meter min="0" max="100" value="89"></meter>
+			</li>
+			<li>
+				<label> 포켓몬스터 10기 회원수 : 5300만명(정원보다 3000만명 초과) </label>
+				<meter min="5000" max="55000" low="12000" high="50000" value="53000"></meter>
+			</li>
+			<li>
+				<label> 포켓몬스터 10기 해외 회원의 비율 : 약 30%</label>
+				<meter value="0.3" optimum="0.9"></meter>
+			</li>
+		</ul>
+		<a href="https://www.youtube.com/channel/UCqsPmfRMm0AGTF3mw1VtCnw" target="b">
+			매드몬스터 영상 시청하기 </a>
+		<br>
+		<br>
+		<a href="#top"> 메뉴로 </a>
+	</div>
+	</div>
+</body>
